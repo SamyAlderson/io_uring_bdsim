@@ -1,0 +1,7 @@
+[package]
+name = "io_uring_bdsim"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+io_uring = "0.4.0"
