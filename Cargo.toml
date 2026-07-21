@@ -2,3 +2,37 @@
 name = "io_uring_bdsim"
 version = "0.1.0"
 edition = "2021"
+
+[dependencies]
+io_uring = "0.4.0"
+
+[features]
+io_uring_support = []
+block_device_simulation = []
+
+[profile.dev]
+opt-level = "s"
+
+[profile.release]
+opt-level = "z"
+
+[build-dependencies]
+toml = "0.5.8"
+
+[dev-dependencies]
+cargo-toml = "0.3.0"
+rustfmt = "1.6.7"
+
+[include]
+src/main.rs
+src/bd_sim.rs
+src/utils.rs
+src/io_uring.rs
+tests/main.rs
+Cargo.lock
+rustfmt.toml
+README.md
+.gitignore
+
+[dependencies.io_uring]
+features = ["io_uring_support"]
