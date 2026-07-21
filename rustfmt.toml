@@ -1,0 +1,48 @@
+[formatting]
+
+indent_size = 4
+max_line_length = 100
+
+[arrays]
+
+array_commas = true
+
+[align]
+
+arrays = true
+
+[spaces]
+
+before_brackets = true
+
+[extra]
+
+place_comma = before
+
+[missing]
+
+place_comma = after
+
+[trailing]
+
+comma = true
+
+[spaces]
+
+colon = true
+
+[derive]
+
+skip = ["std::cmp::PartialEq", "std::cmp::Eq", "std::hash::Hash"]
+
+[options]
+
+allow_single_line_blocks = true
+allow_single_line_statements = true
+allow_trailing_commas = true
+brace_style = "Rustfmt"
+cast_precision = 16
+
+[lines]
+
+wrap_before_binary_operators = true
