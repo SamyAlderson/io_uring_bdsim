@@ -1,73 +1,66 @@
 # io_uring_bdsim
-A block device simulator using io_uring for kernel development and testing
+A block device simulator for kernel development and testing
 
-## What and Why
-This project aims to provide a block device simulator using io_uring for kernel development and testing. It allows developers to test and experiment with io_uring-based block device drivers without the need for physical hardware.
+A simple io_uring based block device simulator for testing and developing kernel block device code.
 
-## Install
-To use this project, you'll need Rust installed on your system. You can install it from the official [Rust installation page](https://www.rust-lang.org/tools/install).
+## How to Install and Use
 
-Once Rust is installed, you can clone this repository and run the following command to build and run the simulator:
-```bash
-cargo run
+To install, add the following line to your `Cargo.toml`:
+```toml
+[dependencies]
+io_uring_bdsim = "0.1"
 ```
-This will compile the project and run the simulator.
+Then, use it in your kernel development or testing code with:
+```rust
+use io_uring_bdsim as bdsim;
 
-## Usage
-The simulator can be used as follows:
-```bash
-cargo run -- --help
+// Create a block device simulator
+let bdsim = bdsim::BlockDeviceSimulator::new();
+
+// Perform I/O operations on the simulated block device
+// ...
 ```
-This will display a help message with usage instructions.
+## Building from Source
 
-## Build from Source
-To build the project from source, you'll need to have Rust installed on your system. You can clone this repository and run the following command:
+Clone the repository and run:
 ```bash
 cargo build
 ```
-This will compile the project.
+This will build the project.
 
-## Project Structure
-The project is structured as follows:
-```plaintext
-Cargo.toml
-src/
-main.rs
-bd_sim.rs
-utils.rs
-io_uring.rs
-tests/
-main.rs
-Cargo.lock
-rustfmt.toml
-README.md
-.gitignore
+## Running Tests
+
+To run the test suite, use:
+```bash
+cargo test
 ```
+## Project Structure
+
+* `Cargo.toml`: project metadata
+* `src/lib.rs`: block device simulator implementation
+* `src/block_device_simulator.rs`: block device simulator module
+* `src/io_uring.rs`: io_uring support module
+* `tests/test_block_device.rs`: test for block device simulation
+* `tests/test_io_uring.rs`: test for io_uring support
+
 ## License
-This project is licensed under the MIT License.
 
-## Features
-The project supports the following features:
+Copyright (c) 2026 SamyAlderson
 
-* `io_uring_support`: Enables support for io_uring.
-* `block_device_simulation`: Enables block device simulation.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Dependencies
-The project depends on the `io_uring` crate version 0.4.0.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-## Contributing
-Contributions are welcome! Please submit a pull request with your changes.
-
-## Architecture
-The simulator is implemented as a Rust program that uses the `io_uring` crate to interact with the kernel. The simulator uses a block device simulator implementation that provides a virtual block device that can be used for testing and experimentation.
-
-The simulator is structured as follows:
-
-* `src/main.rs`: The main entry point of the simulator.
-* `src/bd_sim.rs`: The block device simulator implementation.
-* `src/utils.rs`: Utility functions for the simulator.
-* `src/io_uring.rs`: io_uring wrapper and utility functions.
-
-The simulator uses a number of idiomatic Rust conventions, including Rust's error handling mechanism and its idiomatic use of iterators and closures.
-
-The simulator is designed to be extensible and flexible, allowing developers to easily add new features and functionality.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
