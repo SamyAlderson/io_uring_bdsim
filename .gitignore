@@ -1,15 +1,15 @@
-__pycache__/
-*.pyc
-.pytest_cache/
-.env
-*.egg-info/
-dist/
-build/
-.venv/
-node_modules/
+# ignore build artifacts and other files
+Cargo.toml.lock
+Cargo.lock
 target/
-bin/
-obj/
+
+# ignore Rust formatting configuration
+rustfmt.toml
+
+# ignore project-specific build artifacts
 *.o
-*.so
-*.dylib/
+*.obj
+*.exe
+bd_sim.o
+bd_sim.obj
+bd_sim.exe
