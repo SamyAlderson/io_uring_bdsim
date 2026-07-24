@@ -1,50 +1,51 @@
 # io_uring_bdsim
-A block device simulator for kernel development and testing
+A simple block device simulator for kernel development and testing
 
-A simple io_uring based block device simulator for testing and developing kernel block device code.
+## What it does
+io_uring_bdsim is a block device simulator that uses io_uring for kernel development and testing. It allows you to test and experiment with block device functionality without needing to set up a physical device. This can be useful for kernel developers who want to test and debug their code without the overhead of a physical device.
 
-## How to Install and Use
-
-To install, add the following line to your `Cargo.toml`:
-```toml
-[dependencies]
-io_uring_bdsim = "0.1"
+## Install
+```bash
+cargo add io_uring_bdsim
 ```
-Then, use it in your kernel development or testing code with:
+
+## Usage
 ```rust
-use io_uring_bdsim as bdsim;
+use io_uring_bdsim::*;
 
-// Create a block device simulator
-let bdsim = bdsim::BlockDeviceSimulator::new();
+fn main() {
+    // Create a new block device simulator
+    let mut bdsim = BlockDeviceSim::new();
 
-// Perform I/O operations on the simulated block device
-// ...
+    // Add a new block device to the simulator
+    let device = bdsim.add_device("my_device");
+
+    // Read 10 blocks from the device
+    let mut buffer = [0; 4096];
+    for _ in 0..10 {
+        device.read(&mut buffer).unwrap();
+    }
+}
 ```
-## Building from Source
 
-Clone the repository and run:
+## Build from source
 ```bash
 cargo build
 ```
-This will build the project.
 
-## Running Tests
-
-To run the test suite, use:
+## Tests
 ```bash
 cargo test
 ```
-## Project Structure
 
-* `Cargo.toml`: project metadata
-* `src/lib.rs`: block device simulator implementation
-* `src/block_device_simulator.rs`: block device simulator module
-* `src/io_uring.rs`: io_uring support module
-* `tests/test_block_device.rs`: test for block device simulation
-* `tests/test_io_uring.rs`: test for io_uring support
+## Project structure
+- `src/main.rs`: Entry point of the program
+- `src/block_device_sim.rs`: Implementation of the block device simulator
+- `src/block_device.rs`: Implementation of the block device
+- `tests/block_device_sim.rs`: Tests for the block device simulator
+- `Cargo.toml`: Rust project configuration file
 
 ## License
-
 Copyright (c) 2026 SamyAlderson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
